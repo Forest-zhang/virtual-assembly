@@ -1,0 +1,223 @@
+script{
+
+
+''''二次回路界面，有5个按钮：相关元件介绍、电气知识讲解、接线学习、
+''''自主练习、返回（group（100））
+
+include{二次回路\相关元件介绍\二次回路相关元件介绍.script}
+
+'''''''''''''''''界面用到的图片：二级界面背景图（在main中定义），介绍的页面图片
+' image{''二级界面介绍图,图层为10
+	' name{二级界面介绍图}
+	' field{/scene/images/二次回路/介绍}
+	' enable{false}
+	' rect{-1,1,1,-1,10}
+	' bitmap{二次回路\二次回路图片按钮\背景.jpg}
+' }
+
+
+
+''''''''''''''''''定义4个按钮'''''''''''''''''''''''''''''''
+button{''''''''''''相关元件介绍
+	name{相关元件介绍}
+	enable{false}
+	group{100}
+	rect{0.455,0.739,0.826,0.603,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\相关元件介绍按钮不亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\相关元件介绍按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\相关元件介绍按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}	
+}
+button{''''''''''''电气知识学习
+	name{电气知识学习}
+	enable{false}
+	group{100}
+	rect{0.455,0.525,0.826,0.377,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\电气知识学习按钮不亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\电气知识学习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\电气知识学习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}	
+}
+button{''''''''''''接线学习
+	name{接线学习}
+	enable{false}
+	group{100}
+	rect{0.455,0.301,0.826,0.159,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\接线学习按钮不亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\接线学习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\接线学习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}	
+}
+button{''''''''''''自主练习
+	name{自主练习}
+	enable{false}
+	group{100}
+	rect{0.455,0.109,0.826,-0.041,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\自主练习按钮不亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\自主练习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\自主练习按钮点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\按钮蒙版.jpg}
+	}	
+}
+
+'''''''''''''''''''4个按钮对应触发事件''''''''''''''''''''''''''''
+''点击任何一个按钮：首先关闭二次回路界面，接着调用对应的模块的入口动画。
+
+button{''''''''''''相关元件介绍
+	name{相关元件介绍}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{关闭二次回路界面}}
+		animation{name{进入相关元件介绍}}
+	}
+}
+button{''''''''''''电气知识学习
+	name{电气知识学习}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{关闭二次回路界面}}
+		animation{name{进入电气知识学习}}
+	}
+}
+button{''''''''''''接线学习
+	name{接线学习}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{关闭二次回路界面}}
+		animation{name{进入接线学习}}
+	}
+}
+button{''''''''''''自主练习
+	name{自主练习}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{关闭二次回路界面}}
+		animation{name{进入自主练习}}
+	}
+}
+
+''''''''''''''''''''返回按钮'''''''''''''''''''''''
+button{''返回定义
+	name{二次回路界面返回}
+	enable{false}
+	group{100}
+	rect{0.786,-0.837,0.969,-0.932,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\返回不点亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\返回点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\返回点亮.jpg}
+	}	
+}
+button{''返回触发
+	name{二次回路界面返回}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{关闭二次回路界面}}
+		animation{name{进入主界面}}
+	}
+}
+
+
+''''''''''''''''界面动画：进入二次回路界面、关闭二次回路界面'''''
+animation{''进入二次回路界面：显示二次回路界面内容、只显示二次回路线缆
+	name{进入二次回路界面}
+	controller{
+		life{0,100}
+		action{
+			act{
+				type{show Field}
+				field{/scene/images/背景图/二级界面背景图}
+				' field{/scene/images/二次回路/二级界面介绍图}
+			}
+			act{
+				type{enable ctrlpt group}
+				int{100}
+			}
+			act{
+				type{hide field}
+				field{/scene/model/电气拆装线缆}
+			}
+		}
+	}
+	controller{
+		life{100,200}
+		action{
+			act{
+				type{show field}
+				field{/scene/model/电气拆装线缆/二次回路接线}
+			}
+		}
+	}
+	
+}
+
+animation{''关闭二次回路界面
+	name{关闭二次回路界面}
+	controller{
+		life{0,100}
+		action{
+			act{
+				type{hide Field}
+				field{/scene/images/背景图/二级界面背景图}
+				' field{/scene/images/二次回路/二级界面介绍图}
+			}
+			act{
+				type{disable ctrlpt group}
+				int{100}
+			}
+		}
+	}
+}
+
+animation{''进入主界面
+	name{进入主界面}
+	controller{
+			action{
+				act{
+					type{show field}
+					field{/scene/images/背景图/首页背景图}
+				}
+				act{
+					type{enable ctrlpt group}
+					int{001}
+				}
+			}
+		}
+}
+
+}

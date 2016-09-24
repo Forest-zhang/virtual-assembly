@@ -1,0 +1,140 @@
+script{
+''元件介绍：介绍页面所需的图片+区域控制   关闭的内容在上一层中定义。
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''IPC单元''''''''''''''''''''''
+image{''IPC界面图 图层10
+	field{/scene/images/元件介绍/IPC}
+	name{IPC界面图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{元件介绍按钮图片\IPC\IPC界面图.jpg}
+}
+
+image{''功能说明按钮
+	field{/scene/images/元件介绍/IPC/功能说明}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.379,-0.560,0.181,0}
+	bitmap{元件介绍按钮图片\IPC\功能说明按钮.jpg}	
+}
+image{''接口介绍按钮
+	field{/scene/images/元件介绍/IPC/接口介绍}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.183,-0.560,-0.015,0}
+	bitmap{元件介绍按钮图片\IPC\接口介绍按钮.jpg}	
+}
+image{''外部连接按钮
+	field{/scene/images/元件介绍/IPC/外部连接}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.017,-0.560,-0.207,0}
+	bitmap{元件介绍按钮图片\IPC\外部连接按钮.jpg}	
+}
+
+image{''IPC功能说明
+	field{/scene/images/元件介绍/IPC/功能说明}
+	name{IPC功能说明}
+	enable{false}
+	rect{-0.557,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IPC\IPC功能说明.jpg}	
+}
+image{''IPC接口介绍
+	field{/scene/images/元件介绍/IPC/接口介绍}
+	name{IPC接口介绍}
+	enable{false}
+	rect{-0.557,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IPC\IPC接口介绍.jpg}	
+}
+image{''IPC外部连接
+	field{/scene/images/元件介绍/IPC/外部连接}
+	name{IPC外部连接}
+	enable{false}
+	rect{-0.557,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IPC\IPC外部连接.jpg}	
+}
+
+area{''切换至功能说明:隐藏其他的两个介绍说明，显示功能说明
+	name{切换至功能说明}
+	rect{-0.978,0.379,-0.560,0.181}
+	enable{false}
+	group{1101}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IPC/功能说明}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IPC/外部连接}
+				field{/scene/images/元件介绍/IPC/接口介绍}
+			}
+		}
+	}
+}
+area{''切换至接口介绍:隐藏其他的两个介绍说明，显示功能说明
+	name{切换至接口介绍}
+	rect{-0.978,0.183,-0.560,-0.015}
+	enable{false}
+	group{1101}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IPC/接口介绍}
+							
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IPC/功能说明}
+				field{/scene/images/元件介绍/IPC/外部连接}	
+			}
+		}
+	}
+}
+area{''切换至外部连接:隐藏其他的两个介绍说明，显示功能说明
+	name{切换至外部连接}
+	rect{-0.978,-0.017,-0.560,-0.207}
+	enable{false}
+	group{1101}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IPC/外部连接}				
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IPC/功能说明}
+				field{/scene/images/元件介绍/IPC/接口介绍}
+			}
+		}
+	}
+}
+
+animation{''进入IPC单元介绍：打开初始显示的图片，打开初始的区域控制
+	name{进入IPC单元介绍}
+	controller{
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IPC/功能说明}
+				field{/scene/images/元件介绍/IPC/IPC界面图}
+			}
+			act{
+				type{enable ctrlpt group}
+				int{1101}				
+			}
+		}
+	}
+}
+
+'''''''''''''''''''''''''''''''电源指示灯'''''''''''''''''''''
+
+'''''''''''''''''''''''''''''''示教器'''''''''''''''''''''''''
+
+}

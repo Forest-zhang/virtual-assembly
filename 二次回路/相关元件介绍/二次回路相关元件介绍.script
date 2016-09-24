@@ -1,0 +1,593 @@
+script{
+
+''''''''''相关元件介绍：右侧弹框、每个元件控制点（group 110）、界面页面、返回按钮
+''进入页面，首先弹出右侧窗口，接着进行相关元件闪烁显示
+''闪烁结束之后打开元件的控制点。
+''点击控制点，（disable全部的控制点）进入相应的页面。
+''点击页面关闭按钮，可以关闭【关闭时需要开启区域控制，和控制点，这个是个难点】
+''点击返回按钮，返回二级界面，关闭此界面的控制点和右侧弹窗
+
+
+''注意根目录
+file{二次回路\二次回路ANB动画\贴士移出.anb}
+' file{二次回路\二次回路ANB动画\贴士移入.anb}
+
+include{元件介绍.script}
+
+''''''''''''进入元件介绍页面。。关闭按钮点亮
+image{''关闭按钮点亮
+	field{/scene/images/元件介绍}
+	name{关闭按钮点亮}
+	enable{false}
+	rect{0.888,1,1,0.834,0}
+	bitmap{元件介绍按钮图片\关闭按钮点亮.jpg}
+}
+''''''''''元件控制点(group 110)：【文字显示的位置需要调整】
+
+ctrlpt{''总线式IO单元 /scene/model/IO模块
+	name{总线式IO单元}
+	field{/scene/model/IO模块}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点和区域控制，防止出现不需要的内容弹出
+			program{
+				astart("进入IO介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/IO模块}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "电源开关")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/IO模块}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}	
+		}	
+	}
+}
+ctrlpt{''转换开关 /scene/model/控制面板/电源开关
+	name{转换开关}
+	field{/scene/model/控制面板/电源开关}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点
+			program{
+				astart("进入转换开关介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/控制面板/电源开关}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "电源开关")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/控制面板/电源开关}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+ctrlpt{''交流接触器  /scene/model/交流接触器
+	name{交流接触器}
+	field{/scene/model/交流接触器}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点
+			program{
+				astart("进入交流接触器介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/交流接触器}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "交流接触器")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/交流接触器}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+ctrlpt{''电源指示灯  /scene/model/控制面板/电源指示灯
+	name{电源指示灯}
+	field{/scene/model/控制面板/电源指示灯}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点
+			program{
+				astart("进入电源指示灯介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/控制面板/电源指示灯}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "电源指示灯")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/控制面板/电源指示灯}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+ctrlpt{''示教器 /scene/model/示教器
+	name{示教器}
+	field{/scene/model/示教器}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点
+			program{
+				astart("进入示教器介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/示教器}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "示教器")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/示教器}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+ctrlpt{''IPC单元 /scene/model/IPC单元
+	name{IPC单元}
+	field{/scene/model/IPC单元}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点，隐藏贴士
+			program{
+				astart("进入IPC单元介绍");
+			}
+			act{''关闭模型上控制点和区域控制
+				type{disable Ctrlpt group}
+				int{110}
+			}
+			act{''打开IPC页面上的区域控制
+				type{enable ctrlpt group}
+				int{1100}
+			}
+			act{''隐藏贴士
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/IPC单元}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "IPC单元")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/IPC单元}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+ctrlpt{''X3端子排
+	name{X3端子排}
+	field{/scene/model/X3端子排}
+	Group{110}
+	enable{false}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+		''点击之后进入介绍页面，关闭所有的控制点
+			program{
+				astart("进入端子排介绍");
+			}
+			act{
+				type{disable Ctrlpt group}
+				int{110}
+			}
+		}
+	}
+	reaction{'''''''''''鼠标移入
+		type{mouse move in}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/X3端子排}
+				bool{true}
+			}
+			program{
+				printString(0,-0.9, "X3端子排")
+			}
+		}	
+	}
+	reaction{'''''''''''鼠标移出
+		type{mouse move out}
+		action{
+			act{
+				type{hilight field}
+				field{/scene/model/X3端子排}
+				bool{false}
+			}
+			program{
+				flush("/scene/system/texts")
+			}			
+		}	
+	}
+}
+
+''''''''''''''''右侧弹框''''''''''''''''
+image{''右侧弹框 图片定义  modules/main/images/二次回路贴士
+	name{二次回路贴士}
+	field{/scene/modules/main/images}
+	enable{false}
+	rect{0.936291,0.470945,1.373410,-0.233332,0}
+	bitmap{二次回路/二次回路图片按钮/贴士.jpg}
+}
+animation{''贴士移入
+	name{贴士移入}
+	property{reverse}
+	reference{animation{name{贴士移出}}}
+}
+animation{''显示贴士
+	name{显示贴士}
+	controller{
+		life{0,1000}
+		action{
+			program{
+				astart("贴士移出")
+			}
+		}	
+	}
+	controller{
+		life{10000,11000}
+		action{
+			program{
+				astart("贴士移入")
+			}
+		}	
+	}
+}
+area{''右侧弹框弹出 group(110) 区域控制
+	name{右侧弹框弹出}
+	rect{0.936291,0.470945,1,-0.233332}
+	group{110}
+	reaction{
+		type{LBUTTONDOWN}
+		animation{name{显示贴士}}
+	}	
+}
+
+'''''''''''''模型闪烁显示‘''''''''''''''
+hilightfield1(field1,tips){''闪烁+文字介绍   hilightfield1
+	animation{
+		controller{
+			life{0,2200}
+			action{
+				program{
+					printString(0,-0.9, "tips")
+				}
+			}
+		}
+		controller{
+			life{2200,2400}
+			action{
+				program{
+					flush("/scene/system/texts")
+				}
+			}
+		}
+		controller{
+			life{0,400}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{TRUE}
+				}
+			}		
+		}
+		controller{
+			life{400,800}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{800,1200}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{1200,1600}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{1600,2000}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{2000,2400}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}	
+	}
+}
+
+''进入二次回路元件页面初始画面：
+''除了二次回路的线缆隐藏，设定初始视角和贴士，所有相关的元件依次高亮显示,开启元件控制点
+animation{''进入相关元件介绍
+	name{进入相关元件介绍}
+	controller{''转换视角
+		life{0,1000}
+		camera{
+			type{to}
+			values{-4986.026367, 1000.022522, 3260.478516, -4307.085938, 25.357548, 1899.906128, 0.239931, 0.841898, -0.483372}
+		}
+		action{
+			act{
+				type{show field}
+				field{/scene/modules/main/images/二次回路贴士}
+			}
+		}
+	}
+	controller{'、显示贴士
+		life{1000,13000}
+		action{
+			program{
+				astart("显示贴士")
+			}
+		}
+	}
+	' hilightfield1(/scene/model/IO模块)
+	' hilightfield1(/scene/model/控制面板/电源开关)
+	' hilightfield1(/scene/model/交流接触器)
+	' hilightfield1(/scene/model/控制面板/电源指示灯)
+	' hilightfield1(/scene/model/示教器)
+	' hilightfield1(/scene/model/IPC单元)
+	' hilightfield1(/scene/model/X3端子排)
+	
+	hilightfield1(/scene/model/IO模块,IO模块)
+	hilightfield1(/scene/model/控制面板/电源开关,电源开关)
+	hilightfield1(/scene/model/交流接触器,交流接触器)
+	hilightfield1(/scene/model/控制面板/电源指示灯,电源指示灯)
+	hilightfield1(/scene/model/示教器,示教器)
+	hilightfield1(/scene/model/IPC单元,IPC单元)
+	hilightfield1(/scene/model/X3端子排,X3端子排)
+	animation{''隐藏不相关元器件、并开启元件控制点
+		name{开启元件控制点}
+		controller{
+			action{
+				act{
+					type{enable ctrlpt group}
+					int{110}
+				}
+				act{
+					type{hide field}
+					field{/scene/model/伺服驱动器}
+					field{/scene/model/380V空气开关}
+					field{/scene/model/熔断器}
+					field{/scene/model/220V空气开关}
+					field{/scene/model/开关电源}
+					field{/scene/model/X2端子排}
+					field{/scene/model/变压器}
+					field{/scene/model/伺服电机}
+				}
+			}
+		}
+	}
+}
+
+''关闭元件介绍进入二次回路界面，利用区域控制
+''''''''''''''''''''''''''关闭按钮'''''''''''''''''''''
+area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
+		''关闭每一个介绍页面的区域控制
+	name{关闭按钮}
+	rect{0.888,1,1,0.834}
+	enable{false}
+	group{1100}
+	reaction{
+		type{mouse move in}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/关闭按钮点亮}
+			}
+		}
+	}
+	reaction{
+		type{mouse move out}
+		action{
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/关闭按钮点亮}
+			}
+		}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍}
+			}
+			act{''关闭元件介绍的控制点
+				type{disable ctrlpt group}
+				int{1101}
+			}			
+			act{''显示贴士
+				type{show field}
+				field{modules/main/images/二次回路贴士}				
+			}
+			act{''打开模型上控制点和贴士区域控制
+				type{enable ctrlpt group}
+				int{110}
+			}
+			act{''关闭自身的区域控制点
+				type{disable ctrlpt group}
+				int{1100}
+			}
+		}
+	}	
+}
+
+
+}

@@ -1,0 +1,195 @@
+script{
+
+settings{
+	workdir{CURDIR}
+}
+
+file{电气拆装.vis}
+
+include{二次回路\二次回路界面.script}
+
+''''''''''''''定义首页、二级页面背景图片(图层为10)''''''''''
+image{''首页背景图
+	field{/scene/images/背景图}
+	name{首页背景图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{首页按钮图片\背景.jpg}
+	' transparency{0.5}
+}
+image{''二级界面背景图片
+	field{/scene/images/背景图}
+	name{二级界面背景图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{首页按钮图片\背景.jpg}
+}
+
+image{''首页介绍图片
+	field{/scene/images/首页}
+	name{首页介绍图片}
+	enable{true}
+	rect{-1,1,1,-1,10}
+	bitmap{首页按钮图片\介绍.jpg}
+}
+''''''''''''''定义首页按钮 图层为0 group001''''''''''
+button{''地线回路
+	name{地线回路}
+	group{001}
+	enable{false}
+	rect{0.455,0.739,0.826,0.603,0}
+	normal{
+		bitmap{首页按钮图片\地线回路按钮不亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{首页按钮图片\地线回路按钮点亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{首页按钮图片\地线回路按钮点亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		''判断是否能够实现
+		animation{name{进入地线回路界面}}
+		animation{name{关闭首页}}
+	}
+	
+}
+button{''一次回路
+	name{一次回路}
+	group{001}
+	enable{false}
+	rect{0.455,0.525,0.826,0.377,0}
+	normal{
+		bitmap{首页按钮图片\一次回路按钮不亮 (2).jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版 (2).jpg}
+	}
+	hover{
+		bitmap{首页按钮图片\一次回路按钮点亮 (2).jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版 (2).jpg}
+	}
+	push{
+		bitmap{首页按钮图片\一次回路按钮点亮 (2).jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版 (2).jpg}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		''判断是否能够实现
+		animation{name{进入一次回路界面}}
+		animation{name{关闭首页}}
+	}
+	
+}
+button{''二次回路
+	name{二次回路}
+	group{001}
+	enable{false}
+	rect{0.455,0.301,0.826,0.159,0}
+	normal{
+		bitmap{首页按钮图片\二次回路按钮不亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	hover{
+		bitmap{首页按钮图片\二次回路按钮点亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	push{
+		bitmap{首页按钮图片\二次回路按钮点亮.jpg}
+		bitmap_templ{首页按钮图片\按钮蒙版.jpg}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		''判断是否能够实现
+		animation{name{进入二次回路界面}}
+		animation{name{关闭首页}}
+	}
+	
+}
+button{''退出系统
+	name{退出系统}
+	group{001}
+	enable{false}
+	rect{0.786,-0.837,0.969,-0.932,0}
+	normal{
+		bitmap{首页按钮图片\退出系统不点亮.jpg}
+	}
+	hover{
+		bitmap{首页按钮图片\退出系统点亮.jpg}
+	}
+	push{
+		bitmap{首页按钮图片\退出系统点亮.jpg}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		''判断是否能够实现
+		animation{name{退出系统}}
+	}
+	
+}
+
+
+'''''''''''''''程序出口动画'''''''''''''''''
+animation{''关闭首页
+''关闭首页图片所在的节点，关闭按钮所在的group
+	name{关闭首页}
+	controller{
+		action{
+			act{
+				type{disable ctrlpt group}
+				int{001}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/首页}
+				field{/scene/images/背景图/首页背景图}
+			}
+		}
+	}
+}
+
+
+animation{''退出系统
+	name{退出系统}
+	controller{
+		action{
+			act{
+				type{exit}
+			}
+		}
+	}
+}
+
+
+
+'''''''''''''''程序入口动画''''''''''''''''''
+animation{
+
+	name{system boot}
+	animation{''显示首页面图片和按钮
+		name{首页显示图片和按钮}
+		controller{
+			life{3000,3200}
+			action{
+				act{
+					type{hide field}
+					field{/scene/images/首页/首页介绍图片}
+				}
+				act{
+					type{show field}
+					field{/scene/images/背景图/首页背景图}
+				}
+				act{
+					type{enable ctrlpt group}
+					int{001}
+				}
+			}
+		}
+	}
+	
+}	
+
+
+}
