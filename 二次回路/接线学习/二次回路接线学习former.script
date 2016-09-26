@@ -1,0 +1,437 @@
+二次回路接线学习：
+1、按空格键不断连线向前。首先被接的两个元器件闪烁几下，接着在两线之间连出一条线，连线过程中，视角跟着变换。并且同时在左侧弹出tips窗口
+id定义：2100 ~ 2200
+
+script{
+
+file{anb动画\二次回路接线\IO盒供电N_stretch.anb}
+file{anb动画\二次回路接线\IO盒供电P_stretch.anb}
+file{anb动画\二次回路接线\IPC供电N_stretch.anb}
+file{anb动画\二次回路接线\IPC供电P_stretch.anb}
+file{anb动画\二次回路接线\电源开关-接触器_stretch.anb}
+file{anb动画\二次回路接线\电源指示灯接线_stretch.anb}
+file{anb动画\二次回路接线\电源指示灯接线2_stretch.anb}
+file{anb动画\二次回路接线\端子排N-示教器_stretch.anb}
+file{anb动画\二次回路接线\端子排P-示教器_stretch.anb}
+file{anb动画\二次回路接线\端子排-电源开关_stretch.anb}
+file{anb动画\二次回路接线\接触器-端子排N_stretch.anb}
+file{anb动画\二次回路接线\电源开关-电源指示灯_stretch.anb}
+
+'''''''''''''''''''''
+animation{
+	name{空动画}
+	controller{
+		life{0,2000}
+		
+	}
+}
+
+''''''''''''''''''''重置所有动画'''''''''''''''''
+resetanimation(aniname){
+	animation{
+		name{重置动画}
+		controller{
+			action{
+				act{
+					type{reset animation}				
+					animation{name{aniname}}
+				}
+			}
+		}
+	}	
+
+}
+
+animation{''重置连线动画
+	name{重置连线动画}
+	resetanimation(IO盒供电N_stretch)
+	resetanimation(IO盒供电P_stretch)
+	resetanimation(IPC供电N_stretch)
+	resetanimation(IPC供电P_stretch)
+	resetanimation(电源开关-接触器_stretch)
+	resetanimation(电源指示灯接线_stretch)
+	resetanimation(电源指示灯接线2_stretch)
+	resetanimation(端子排N-示教器_stretch)
+	resetanimation(端子排P-示教器_stretch)
+	resetanimation(端子排-电源开关_stretch)
+	resetanimation(接触器-端子排N_stretch)
+	resetanimation(电源开关-电源指示灯_stretch)
+}
+
+
+'''''''''''''''''''''模型闪烁函数 hightfield（）'''''''''''''''''''''
+
+hilightfield(field1,field2){''闪烁
+	animation{
+		controller{
+			life{0,400}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{TRUE}
+				}
+			}		
+		}
+		controller{
+			life{400,800}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{800,1200}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{1200,1600}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{1600,2000}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{2000,2400}
+			action{
+				Act{
+				type{hilight field}
+				field{field1}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{2400,2800}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{TRUE}
+				}
+			}		
+		}
+		controller{
+			life{2800,3200}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{3200,3600}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{3600,4000}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{false}
+				}
+			}		
+		}
+		controller{
+			life{4000,4400}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{true}
+				}
+			}		
+		}
+		controller{
+			life{4400,4800}
+			action{
+				Act{
+				type{hilight field}
+				field{field2}
+				BOOL{false}
+				}
+			}		
+		}
+	}
+}
+
+
+'''''''''''''''''''''每一段的接线动画''''''''''''''''''''''''''''''''
+int linenum=1;
+setlinenum(num){''设置连线
+	animation{
+		controller{
+			action{
+				program{
+					linenum=num;
+				}
+			}
+		}
+	}
+}
+
+animation{''电源开关-接触器接线动画
+	name{启动电源开关-接触器}
+	setlinenum(0)
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/X3端子排/对象378)
+	animation{name{端子排-电源开关_stretch}}
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/交流接触器/jcq00)
+	animation{name{电源开关-接触器_stretch}}
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/交流接触器/jcq00)
+	animation{name{接触器-端子排N_stretch}}
+	setlinenum(2)
+}
+
+animation{''电源指示灯接线
+	name{电源指示灯接线}
+	setlinenum(0)
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/控制面板/电源开关)
+	animation{name{电源指示灯接线_stretch}}
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/控制面板/电源指示灯)
+	animation{name{电源开关-电源指示灯_stretch}}
+	hilightfield(/scene/model/控制面板/电源指示灯,/scene/model/X3端子排/对象374)
+	animation{name{电源指示灯接线2_stretch}}
+	setlinenum(3)
+}
+
+animation{''IO盒供电接线
+	name{IO盒供电接线}
+	setlinenum(0)
+	hilightfield(/scene/model/IO模块/hcnc_2-DC_Shell,/scene/model/X3端子排/对象378)
+	animation{name{IO盒供电N_stretch}}
+	hilightfield(/scene/model/IO模块/hcnc_2-DC_Shell,/scene/model/X3端子排/对象374)
+	animation{name{IO盒供电P_stretch}}
+	setlinenum(4)
+}
+
+animation{''IPC供电接线
+	name{IPC供电接线}
+	setlinenum(0)
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IPC单元)
+	animation{name{IPC供电P_stretch}}
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/IPC单元)
+	animation{name{IPC供电N_stretch}}
+}
+
+'''''''''''''''''''''弹出的tips'''''''''''''''''''''''''''''''''''''
+image{''背景板
+	name{提示背景板}
+	field{/scene/image/二次回路背景}
+	enable{false}
+	rect{-0.99,0.55,-0.5,-0.4010}
+	bitmap{二次回路/image/文字框点亮1.jpg}
+	bitmap_templ{二次回路/image/文字框蒙版1.jpg}
+}
+
+MultiText{
+	Field{/scene/text/二次回路/交流接触器接线}
+	Enable{false}
+	Filename{二次回路/二次回路接线讲解.txt}
+	Font{
+		name{黑体}
+		size{三号}
+		property{bold}
+	}
+	color{0, 0, 0}
+	Position{-0.950, 0.50, 0}
+	Scale{0.5,0.8}
+}
+
+MultiText{
+	Field{/scene/text/二次回路/IO模块供电接线}
+	Enable{false}
+	Filename{二次回路/二次回路接线讲解.txt}
+	Font{
+		name{黑体}
+		size{三号}
+		property{bold}
+	}
+	color{0, 0, 0}
+	Position{-0.950, 0.50, 0}
+	Scale{0.5,0.8}
+}
+
+MultiText{
+	Field{/scene/text/二次回路/IPC供电接线}
+	Enable{false}
+	Filename{二次回路/二次回路接线讲解.txt}
+	Font{
+		name{黑体}
+		size{三号}
+		property{bold}
+	}
+	color{0, 0, 0}
+	Position{-0.950, 0.50, 0}
+	Scale{0.5,0.8}
+}
+
+MultiText{
+	Field{/scene/text/二次回路/电源指示灯接线}
+	Enable{false}
+	Filename{二次回路/二次回路接线讲解.txt}
+	Font{
+		name{黑体}
+		size{三号}
+		property{bold}
+	}
+	color{0, 0, 0}
+	Position{-0.950, 0.50, 0}
+	Scale{0.5,0.8}
+}
+
+
+animation{''交流接触器接线讲解
+	name{交流接触器接线讲解}
+	controller{
+		life{0,20}
+		action{
+			act{
+				type{hide field}
+				field{/scene/text/二次回路}
+			}
+			act{
+				type{show field}
+				field{/scene/text/二次回路背景}
+			}
+		}
+	}
+	controller{
+		life{0,10000}
+		printer{
+			FIELD{/scene/text/二次回路/交流接触器接线}
+		}
+	}
+}
+
+animation{''IO模块供电接线讲解
+	name{IO模块供电接线讲解}
+	controller{
+		life{0,20}
+		action{
+			act{
+				type{hide field}
+				field{/scene/text/二次回路}
+			}
+		}
+	}
+	controller{
+		life{0,10000}
+		printer{
+			FIELD{/scene/text/二次回路/IO模块供电接线}
+		}
+	}
+}
+
+animation{''IPC供电接线讲解
+	name{IPC供电接线讲解}
+	controller{
+		life{0,20}
+		action{
+			act{
+				type{hide field}
+				field{/scene/text/二次回路}
+			}
+		}
+	}
+	controller{
+		life{0,10000}
+		printer{
+			FIELD{/scene/text/二次回路/IPC供电接线}
+		}
+	}
+}
+
+animation{''电源指示灯接线讲解
+	name{电源指示灯接线讲解}
+	controller{
+		life{0,20}
+		action{
+			act{
+				type{hide field}
+				field{/scene/text/二次回路}
+			}
+		}
+	}
+	controller{
+		life{0,10000}
+		printer{
+			FIELD{/scene/text/二次回路/电源指示灯接线}
+		}
+	}
+}
+
+key_map{
+	name{空格键}
+	key{ctrl}
+	enable{false}
+	group{2111}
+	reaction{
+		type{key down}
+		action{
+			program{
+				if(linenum==1){
+					astart("启动电源开关-接触器");
+					astart("交流接触器接线讲解");
+				}
+				else if(linenum==2){
+					astart("电源指示灯接线");
+					astart("电源指示灯接线讲解")
+				}
+				else if(linenum==3){
+					astart("IO盒供电接线");
+					astart("IO盒供电接线");						
+				}
+				else if(linenum==4){
+					astart("IPC供电接线");
+					astart("IPC供电接线讲解");					
+				}			
+			}		
+		}
+	}
+}
+
+animation{
+	name{进入二次回路接线学习}
+		controller{
+			action{
+				act{
+					type{enable ctrlpt group}
+					int{2111}
+				}
+			}
+		}
+	}
+}
+
+
