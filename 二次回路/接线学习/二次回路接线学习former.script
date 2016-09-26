@@ -22,7 +22,9 @@ animation{
 	name{空动画}
 	controller{
 		life{0,2000}
-		
+		program{
+			printString(-0.,-0.9, "电源开关")
+		}
 	}
 }
 
