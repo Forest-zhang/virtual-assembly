@@ -19,20 +19,48 @@ file{二次回路\二次回路ANB动画\接触器-N24_stretch.anb}
 file{二次回路\二次回路ANB动画\转换开关2-接触器_stretch.anb}
 file{二次回路\二次回路ANB动画\转换开关8-电源指示灯_stretch.anb}
 
+''''''''''''''重置所有动画
+resetanimation(aniname){
+	animation{
+		name{重置动画}
+		controller{
+			action{
+				act{
+					type{reset animation}				
+					animation{name{aniname}}
+				}
+			}
+		}
+	}	
+
+}
+animation{''重置所有动画
+	name{重置所有动画}
+	resetanimation{ION-N24_stretch}
+	resetanimation{IOP-P24_stretch}
+	resetanimation{IPCN-N24_stretch}
+	resetanimation{IPC-示教器_stretch}
+	resetanimation{IPCP-P24_stretch}
+	resetanimation{N24-示教器_stretch}
+	resetanimation{P24-示教器_stretch}
+	resetanimation{P24-转换开关1_stretch}
+	resetanimation{P24-转换开关7_stretch}
+	resetanimation{电源指示灯-N24_stretch反}
+	resetanimation{接触器-N24_stretch}
+	resetanimation{转换开关2-接触器_stretch}
+	resetanimation{转换开关8-电源指示灯_stretch}
+}
 
 '''''''''''''接线学习贴士''''''''''
 image{
-	name{}
+	name{接线学习贴士}
 }
 area{''贴士区域控制--开启
 	name{接线讲解区域控制}
 	rect{}
 	enable{false}
 	
-
 }
-
-
 
 '''''''''''''''''''''''''连线前闪烁，以及''''''''''
 hilightfield(field1,field2,name1,name2){''两个元件先后闪烁
@@ -192,6 +220,118 @@ hilightfield(field1,field2,name1,name2){''两个元件先后闪烁
 	}
 }
 
+''''''''''''接线步骤'''''''''''''
+''利用stepnum控制点击键盘之后连哪根线,默认为1
+int stepnum=1;
+setstepnum(num){''设置连线
+	animation{
+		controller{
+			action{
+				program{
+					stepnum=num;
+			 	}
+			}
+		}
+	}
+}
 
+'''''''''''''每一段连线的动画
+animation{''电源开关-接触器
+	name{电源开关-接触器}
+	setstepnum(0)
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/控制面板/电源开关,P24V,电源开关)
+	animation{name{P24-转换开关1_stretch}}
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/交流接触器,电源开关,交流接触器)
+	animation{name{转换开关2-接触器_stretch}}
+	hilightfield(/scene/model/交流接触器,/scene/model/X3端子排/对象378,交流接触器,N24V)
+	animation{name{接触器-N24_stretch}}
+	setstepnum(2)	
+}
+animation{''电源指示灯接线
+	name{电源指示灯接线}
+	setstepnum(0)
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/控制面板/电源开关,P24V,电源开关)
+	animation{name{P24-转换开关7_stretch}}
+	hilightfield(/scene/model/控制面板/电源开关,/scene/model/控制面板/电源指示灯,电源开关,电源指示灯)
+	animation{name{转换开关8-电源指示灯_stretch}}
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/控制面板/电源指示灯,N24V,电源指示灯)
+	animation{name{电源指示灯-N24_stretch反}}
+	setstepnum(3)
+}
+animation{''IO盒供电接线
+	name{IO盒供电接线}
+	setstepnum(0)
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/IO模块/hcnc_2-DC_Shell,P24V,IO模块)
+	animation{name{IOP-P24_stretch}}
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IO模块/hcnc_2-DC_Shell,N24V,IO模块)
+	animation{name{ION-N24_stretch}}
+	setstepnum(4)	
+}
+animation{''IPC供电接线
+	name{IPC供电接线}
+	setstepnum(0)
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/IPC单元,P24V,IPC单元)
+	animation{name{IPCP-P24_stretch}}
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IPC单元,N24V,IPC单元)
+	animation{name{IPCN-N24_stretch}}
+	setstepnum{5}
+}
+animation{''示教器接线
+	name{示教器接线}
+	setstepnum(0)
+	hilightfield(/scene/model/IPC单元,/scene/model/示教器,IPC单元网线接口,示教器)
+	animation{name{IPC-示教器_stretch}}
+	hilightfield(/scene/model/X3端子排/对象374,/scene/model/示教器,P24V,示教器)
+	animation{name{P24-示教器_stretch}}
+	hilightfield{/scene/model/X3端子排/对象378,/scene/model/示教器,N24V,示教器}
+	animation{name{N24-示教器_stretch}}
+}
+
+key_map{''定义点击空格键之后播放什么动画
+	name{空格键}
+	key{space}
+	enable{false}
+	group{2111}
+	reaction{
+		type{key down}
+		action{
+			program{
+				if(stepnum==1){
+					astart("电源开关-接触器")
+				}
+				else if(stepnum==2){
+					astart("电源指示灯接线")
+				}
+				else if(stepnum==3){
+					astart("IO盒供电接线")
+				}
+				else if(stepnum==4){
+					astart("IPC供电接线")
+				}
+				else if(stepnum==5){
+					astart("示教器接线")
+				}
+			}
+		}
+	}
+}
+
+animation{''进入接线学习
+''首先弹出贴士，贴士缩回之后打开key——map控制点。
+	name{进入接线学习} 
+	animation{name{重置所有动画}}
+	' animation{
+		' name{打开接线学习内容}
+	' }
+	animatioN{
+		name{开启接线}
+		controller{
+		
+		}
+		
+	}
+	
+	
+}
 
 }

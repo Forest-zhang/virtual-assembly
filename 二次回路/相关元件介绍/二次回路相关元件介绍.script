@@ -562,6 +562,15 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 			}
 		}
 	}
+	' reaction{
+		' type{LBUTTONDOWN}
+		' action{
+			' act{''关闭元件介绍的控制点+!!!!!
+				' type{disable ctrlpt group}
+				' int{1101}			
+			' }
+		' }
+	' }
 	reaction{
 		type{LBUTTONDOWN}
 		action{
@@ -569,13 +578,14 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 				type{hide field}
 				field{/scene/images/元件介绍}
 			}
-			act{''关闭元件介绍的控制点+!!!!!
+			act{''关闭元件介绍的控制点+!!!!!此处要分开写
 				type{disable ctrlpt group}
-				int{1101}
-				' int{1102}
-				int{1103}
-				
-			}			
+				int{1101}			
+			}
+			' act{''关闭元件介绍的控制点+!!!!!
+				' type{disable ctrlpt group}
+				' int{1103}			
+			' }				
 			act{''显示贴士
 				type{show field}
 				field{modules/main/images/二次回路贴士}				
@@ -589,7 +599,8 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 				int{1100}
 			}
 		}
-	}	
+	}
+	
 }
 
 
