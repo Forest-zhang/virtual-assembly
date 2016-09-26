@@ -536,6 +536,63 @@ animation{''进入相关元件介绍
 	}
 }
 
+''关闭二次元件相关介绍
+''关闭所有的模型控制点、区域控制和按钮。显示所有之前隐藏的元器件
+''关闭贴士,退出时强制刷新下texts中内容
+button{
+	name{关闭二次元件相关介绍}
+	group{110}
+	enable{false}
+	rect{0.807,0.975,0.99,0.87,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮不亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮点亮.jpg}
+	}	
+}
+button{
+	name{关闭二次元件相关介绍}
+	reaction{
+		type{LBUTTONDOWN}
+		ACTION{
+		''关闭贴士
+			act{
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
+			}
+			''!！！!!!打开上一级页面的内容 test，试试能不能行。。。可以，赞！！
+			program{
+				astart("进入二次回路界面")
+			}
+			''退出时强制刷新下texts中内容,防止出现文字持续出现的情况
+			program{
+				flush("/scene/system/texts")
+			}
+			''显示之前隐藏的元件
+			act{
+					type{show field}
+					field{/scene/model/伺服驱动器}
+					field{/scene/model/380V空气开关}
+					field{/scene/model/熔断器}
+					field{/scene/model/220V空气开关}
+					field{/scene/model/开关电源}
+					field{/scene/model/X2端子排}
+					field{/scene/model/变压器}
+					field{/scene/model/伺服电机}
+				}
+			''关闭自身的控制点组110
+			act{
+				type{disable ctrlpt group}
+				int{110}
+			}			
+		}
+	}
+}
+
 ''关闭元件介绍进入二次回路界面，利用区域控制
 ''''''''''''''''''''''''''关闭按钮'''''''''''''''''''''
 area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点

@@ -32,23 +32,23 @@ resetanimation(aniname){
 			}
 		}
 	}	
-
 }
+
 animation{''重置所有动画
 	name{重置所有动画}
-	resetanimation{ION-N24_stretch}
-	resetanimation{IOP-P24_stretch}
-	resetanimation{IPCN-N24_stretch}
-	resetanimation{IPC-示教器_stretch}
-	resetanimation{IPCP-P24_stretch}
-	resetanimation{N24-示教器_stretch}
-	resetanimation{P24-示教器_stretch}
-	resetanimation{P24-转换开关1_stretch}
-	resetanimation{P24-转换开关7_stretch}
-	resetanimation{电源指示灯-N24_stretch反}
-	resetanimation{接触器-N24_stretch}
-	resetanimation{转换开关2-接触器_stretch}
-	resetanimation{转换开关8-电源指示灯_stretch}
+	resetanimation(ION-N24_stretch)
+	resetanimation(IOP-P24_stretch)
+	resetanimation(IPCN-N24_stretch)
+	resetanimation(IPC-示教器_stretch)
+	resetanimation(IPCP-P24_stretch)
+	resetanimation(N24-示教器_stretch)
+	resetanimation(P24-示教器_stretch)
+	resetanimation(P24-转换开关1_stretch)
+	resetanimation(P24-转换开关7_stretch)
+	resetanimation(电源指示灯-N24_stretch)''导入进来之后就不能在添加‘反’，这只是一种标记
+	resetanimation(接触器-N24_stretch)
+	resetanimation(转换开关2-接触器_stretch)
+	resetanimation(转换开关8-电源指示灯_stretch)
 }
 
 '''''''''''''接线学习贴士''''''''''
@@ -274,7 +274,7 @@ animation{''IPC供电接线
 	animation{name{IPCP-P24_stretch}}
 	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IPC单元,N24V,IPC单元)
 	animation{name{IPCN-N24_stretch}}
-	setstepnum{5}
+	setstepnum(5)
 }
 animation{''示教器接线
 	name{示教器接线}
@@ -283,7 +283,7 @@ animation{''示教器接线
 	animation{name{IPC-示教器_stretch}}
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/示教器,P24V,示教器)
 	animation{name{P24-示教器_stretch}}
-	hilightfield{/scene/model/X3端子排/对象378,/scene/model/示教器,N24V,示教器}
+	hilightfield(/scene/model/X3端子排/对象378,/scene/model/示教器,N24V,示教器)
 	animation{name{N24-示教器_stretch}}
 }
 
@@ -316,22 +316,77 @@ key_map{''定义点击空格键之后播放什么动画
 	}
 }
 
+
+
 animation{''进入接线学习
 ''首先弹出贴士，贴士缩回之后打开key——map控制点。
-	name{进入接线学习} 
-	animation{name{重置所有动画}}
+	name{进入接线学习}
+	controller{
+		life{0,200}
+		action{
+			program{
+				astart("重置所有动画")
+			}
+		}
+	}
+	' controller{
+		' life
+	' }
 	' animation{
 		' name{打开接线学习内容}
 	' }
-	animatioN{
-		name{开启接线}
-		controller{
-		
+	
+	controller{
+		action{
+			act{
+				type{enable ctrlpt group}
+				int{2111}
+			}		
 		}
-		
 	}
-	
-	
+}
+
+'''''''''''''退出接线学习按钮
+''关闭贴士，关闭电路图，关闭全屏观看的按钮
+''刷新下texts，防止出现文字无法控制
+''显示二次回路的接线。
+button{''退出接线学习
+	name{退出接线学习}
+	group{2111}
+	enable{false}
+	rect{0.807,0.975,0.99,0.87,0}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\退出接线学习按钮不亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\退出接线学习按钮点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\退出接线学习按钮点亮.jpg}
+	}	
+}
+button{
+	name{退出接线学习}
+	reaction{		
+		action{
+			
+			act{''显示二次回路接线
+				type{show field}
+				field{/scene/model/电气拆装线缆/二次回路接线}
+			}
+			''!！！!!!打开上一级页面的内容
+			program{
+				astart("进入二次回路界面")
+			}
+			program{''刷新下texts
+				flush("/scene/system/texts")
+			}
+			act{''放在最后
+				type{disable ctrlpt group}
+				int{2111}
+			}
+		}
+	}
 }
 
 }
