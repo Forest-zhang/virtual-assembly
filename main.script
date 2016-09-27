@@ -28,7 +28,7 @@ image{''二级界面背景图片
 image{'' special picture 20ceng
 	field{/scene/images}
 	name{底部文字框}
-	rect{-1,-0.88,1,-0.97,20}
+	rect{-1,0.97,1,0.88,20}
 	enable{true}
 	bitmap{首页按钮图片\底部文字框.jpg}
 	transparency{0.6}

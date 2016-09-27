@@ -12,21 +12,21 @@ image{''IPC界面图 图层10
 
 image{''功能说明按钮
 	field{/scene/images/元件介绍/IPC/功能说明}
-	name{按钮}
+	name{按钮1}
 	enable{false}
 	rect{-0.978,0.379,-0.560,0.181,0}
 	bitmap{元件介绍按钮图片\IPC\功能说明按钮.jpg}	
 }
 image{''接口介绍按钮
 	field{/scene/images/元件介绍/IPC/接口介绍}
-	name{按钮}
+	name{按钮2}
 	enable{false}
 	rect{-0.978,0.183,-0.560,-0.015,0}
 	bitmap{元件介绍按钮图片\IPC\接口介绍按钮.jpg}	
 }
 image{''外部连接按钮
 	field{/scene/images/元件介绍/IPC/外部连接}
-	name{按钮}
+	name{按钮3}
 	enable{false}
 	rect{-0.978,-0.017,-0.560,-0.207,0}
 	bitmap{元件介绍按钮图片\IPC\外部连接按钮.jpg}	

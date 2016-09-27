@@ -51,7 +51,7 @@ ctrlpt{''总线式IO单元 /scene/model/IO模块
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "电源开关")
+				printString(0,0.948, "电源开关")
 			}
 		}	
 	}
@@ -96,7 +96,7 @@ ctrlpt{''转换开关 /scene/model/控制面板/电源开关
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "电源开关")
+				printString(0,0.948, "电源开关")
 			}
 		}	
 	}
@@ -141,7 +141,7 @@ ctrlpt{''交流接触器  /scene/model/交流接触器
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "交流接触器")
+				printString(0,0.948, "交流接触器")
 			}
 		}	
 	}
@@ -186,7 +186,7 @@ ctrlpt{''电源指示灯  /scene/model/控制面板/电源指示灯
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "电源指示灯")
+				printString(0,0.948, "电源指示灯")
 			}
 		}	
 	}
@@ -231,7 +231,7 @@ ctrlpt{''示教器 /scene/model/示教器
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "示教器")
+				printString(0,0.948, "示教器")
 			}
 		}	
 	}
@@ -284,7 +284,7 @@ ctrlpt{''IPC单元 /scene/model/IPC单元
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "IPC单元")
+				printString(0,0.948, "IPC单元")
 			}
 		}	
 	}
@@ -329,7 +329,7 @@ ctrlpt{''X3端子排
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "X3端子排")
+				printString(0,0.948, "X3端子排")
 			}
 		}	
 	}
@@ -397,7 +397,7 @@ hilightfield1(field1,tips){''闪烁+文字介绍   hilightfield1
 			life{0,2200}
 			action{
 				program{
-					printString(0,-0.9, "tips")
+					printString(0,0.948, "tips")
 				}
 			}
 		}
@@ -543,7 +543,7 @@ button{
 	name{关闭二次元件相关介绍}
 	group{110}
 	enable{false}
-	rect{0.807,0.975,0.99,0.87,0}
+	rect{0.807,-0.87,0.99,-0.975,20}
 	normal{
 		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮不亮.jpg}
 	}
