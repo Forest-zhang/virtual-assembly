@@ -34,11 +34,19 @@ ctrlpt{''总线式IO单元 /scene/model/IO模块
 		action{
 		''点击之后进入介绍页面，关闭所有的控制点和区域控制，防止出现不需要的内容弹出
 			program{
-				astart("进入IO介绍");
+				astart("进入IO模块介绍");
 			}
 			act{
 				type{disable Ctrlpt group}
 				int{110}
+			}
+			act{''打开关闭按钮区域控制
+				type{enable ctrlpt group}
+				int{1100}
+			}
+			act{''隐藏贴士
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
 			}
 		}
 	}
@@ -96,7 +104,7 @@ ctrlpt{''转换开关 /scene/model/控制面板/电源开关
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "电源开关")
+				printString(0,0.948, "电源开关")
 			}
 		}	
 	}
@@ -141,7 +149,7 @@ ctrlpt{''交流接触器  /scene/model/交流接触器
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "交流接触器")
+				printString(0,0.948, "交流接触器")
 			}
 		}	
 	}
@@ -169,11 +177,19 @@ ctrlpt{''电源指示灯  /scene/model/控制面板/电源指示灯
 		action{
 		''点击之后进入介绍页面，关闭所有的控制点
 			program{
-				astart("进入电源指示灯介绍");
+				astart("进入电源指示灯的作用单元介绍");
 			}
 			act{
 				type{disable Ctrlpt group}
 				int{110}
+			}
+			act{
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
+			}
+			act{''打开IPC页面上的关闭区域控制
+				type{enable ctrlpt group}
+				int{1100}
 			}
 		}
 	}
@@ -219,6 +235,14 @@ ctrlpt{''示教器 /scene/model/示教器
 			act{
 				type{disable Ctrlpt group}
 				int{110}
+			}
+			act{''打开关闭按钮区域控制
+				type{enable ctrlpt group}
+				int{1100}
+			}
+			act{''隐藏贴士
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
 			}
 		}
 	}
@@ -284,7 +308,7 @@ ctrlpt{''IPC单元 /scene/model/IPC单元
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "IPC单元")
+				printString(0,0.948, "IPC单元")
 			}
 		}	
 	}
@@ -329,7 +353,7 @@ ctrlpt{''X3端子排
 				bool{true}
 			}
 			program{
-				printString(0,-0.9, "X3端子排")
+				printString(0,0.948, "X3端子排")
 			}
 		}	
 	}
@@ -397,7 +421,7 @@ hilightfield1(field1,tips){''闪烁+文字介绍   hilightfield1
 			life{0,2200}
 			action{
 				program{
-					printString(0,-0.9, "tips")
+					printString(0,0.948, "tips")
 				}
 			}
 		}
@@ -536,6 +560,63 @@ animation{''进入相关元件介绍
 	}
 }
 
+''关闭二次元件相关介绍
+''关闭所有的模型控制点、区域控制和按钮。显示所有之前隐藏的元器件
+''关闭贴士,退出时强制刷新下texts中内容
+button{
+	name{关闭二次元件相关介绍}
+	group{110}
+	enable{false}
+	rect{0.807,-0.87,0.99,-0.975,20}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮不亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\退出元件介绍按钮点亮.jpg}
+	}	
+}
+button{
+	name{关闭二次元件相关介绍}
+	reaction{
+		type{LBUTTONDOWN}
+		ACTION{
+		''关闭贴士
+			act{
+				type{hide field}
+				field{modules/main/images/二次回路贴士}
+			}
+			''!！！!!!打开上一级页面的内容 test，试试能不能行。。。可以，赞！！
+			program{
+				astart("进入二次回路界面")
+			}
+			''退出时强制刷新下texts中内容,防止出现文字持续出现的情况
+			program{
+				flush("/scene/system/texts")
+			}
+			''显示之前隐藏的元件
+			act{
+					type{show field}
+					field{/scene/model/伺服驱动器}
+					field{/scene/model/380V空气开关}
+					field{/scene/model/熔断器}
+					field{/scene/model/220V空气开关}
+					field{/scene/model/开关电源}
+					field{/scene/model/X2端子排}
+					field{/scene/model/变压器}
+					field{/scene/model/伺服电机}
+				}
+			''关闭自身的控制点组110
+			act{
+				type{disable ctrlpt group}
+				int{110}
+			}			
+		}
+	}
+}
+
 ''关闭元件介绍进入二次回路界面，利用区域控制
 ''''''''''''''''''''''''''关闭按钮'''''''''''''''''''''
 area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
@@ -562,6 +643,15 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 			}
 		}
 	}
+	' reaction{
+		' type{LBUTTONDOWN}
+		' action{
+			' act{''关闭元件介绍的控制点+!!!!!
+				' type{disable ctrlpt group}
+				' int{1101}			
+			' }
+		' }
+	' }
 	reaction{
 		type{LBUTTONDOWN}
 		action{
@@ -569,10 +659,20 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 				type{hide field}
 				field{/scene/images/元件介绍}
 			}
-			act{''关闭元件介绍的控制点
+			act{''关闭元件介绍的控制点+!!!!!此处要分开写
 				type{disable ctrlpt group}
-				int{1101}
-			}			
+				int{1101}			
+			}
+			act{''关闭元件介绍的控制点+!!!!!
+				type{disable ctrlpt group}
+				int{1103}			
+			}
+			act{''关闭元件介绍的控制点+!!!!!
+				type{disable ctrlpt group}
+				int{1105}			
+			}
+
+			
 			act{''显示贴士
 				type{show field}
 				field{modules/main/images/二次回路贴士}				
@@ -586,7 +686,8 @@ area{''关闭按钮 将元件介绍下的图片全部隐藏,关闭自身控制点，显示贴士和模型控制点
 				int{1100}
 			}
 		}
-	}	
+	}
+	
 }
 
 

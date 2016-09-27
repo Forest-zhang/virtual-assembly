@@ -434,43 +434,6 @@ setstepnum(num){''设置连线
 	}
 }
 
-
-''''''''''''''''''''''''重新连线按钮''''''''''''''''''''
-button{
-	name{重新连线}
-	enable{false}
-	rect{0.567,-0.87,0.75,-0.975,20}
-	transparency{0.8}
-	normal{
-		bitmap{二次回路\二次回路图片按钮\重新连线按钮不亮.jpg}
-	}
-	hover{
-		bitmap{二次回路\二次回路图片按钮\重新连线按钮点亮.jpg}
-	}
-	push{
-		bitmap{二次回路\二次回路图片按钮\重新连线按钮点亮.jpg}
-	}
-}
-button{
-	name{重新连线}
-	reaction{
-		type{LBUTTONDOWN}
-		action{
-			program{
-				astart("重置所有动画");	
-				stepnum=1;
-				''移出状态无法确定
-				
-			}
-			act{
-				type{disable ctrlpt}
-				ctrlpt{name{重新连线}}
-			}			
-		}
-	}
-}
-
-
 '''''''''''''每一段连线的动画
 animation{''电源开关-接触器
 	name{电源开关-接触器}
@@ -570,6 +533,41 @@ animation{''示教器接线
 	}
 }
 
+''''''''''''''''''''''''重新连线按钮''''''''''''''''''''
+button{
+	name{重新连线}
+	enable{false}
+	rect{0.567,-0.87,0.75,-0.975,20}
+	transparency{0.8}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\重新连线按钮不亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\重新连线按钮点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\重新连线按钮点亮.jpg}
+	}
+}
+button{
+	name{重新连线}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			program{
+				astart("重置所有动画");				
+			}
+			program{
+				stepnum=1;
+			}
+			act{
+				type{disable ctrlpt}
+				ctrlpt{name{重新连线}}
+			}
+		}
+	}
+}
+
 
 key_map{''定义点击空格键之后播放什么动画
 	name{空格键}
@@ -613,11 +611,8 @@ animation{''进入接线学习
 		}
 		action{
 			program{
-			''使所有连线消失,并且将stepnum设置为1,将 移出状态设置为1
-				astart("重置所有动画");
-				stepnum=1;
-				移出状态=1;
-				
+			''使所有连线消失
+				astart("重置所有动画")
 			}			
 			act{
 			''显示贴士，之后播放贴士移出的动画
@@ -685,10 +680,6 @@ button{
 			act{''关闭重新连线
 				type{disable ctrlpt}
 				ctrlpt{name{重新连线}}
-			}
-			act{''关闭全屏显示电路图
-				type{disable ctrlpt}
-				ctrlpt{name{全屏显示电路图}}
 			}
 			act{''放在最后，关闭所有的控制但
 				type{disable ctrlpt group}
