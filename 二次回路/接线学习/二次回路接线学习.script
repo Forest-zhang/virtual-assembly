@@ -52,37 +52,53 @@ animation{''重置所有动画
 
 animation{''播放所有动画
 	name{播放所有动画}
+	property{parallel}
+	animation{name{ION-N24_stretch}}
+	animation{name{IOP-P24_stretch}}
+	animation{name{IPCN-N24_stretch}}
+	animation{name{IPCP-P24_stretch}}
+	animation{name{IPC-示教器_stretch}}
+	animation{name{N24-示教器_stretch}}
+	animation{name{P24-示教器_stretch}}
+	animation{name{P24-转换开关1_stretch}}
+	animation{name{P24-转换开关7_stretch}}
+	animation{name{电源指示灯-N24_stretch}}
+	animation{name{接触器-N24_stretch}}
+	animation{name{转换开关2-接触器_stretch}}
+	animation{name{转换开关8-电源指示灯_stretch}}
 	
 }
 
 '''''''''''''接线学习贴士''''''''''
-image{''接线学习贴士
-	name{接线学习贴士}
-}
+' image{''接线学习贴士
+	' name{接线学习贴士}
+' }
 image{''二次回路电路图,  /scene/iamges/二次回路/二次回路电路图
 ''图层为1，可以将关闭的按钮放在其上。关闭的按钮的图层为0
 	name{二次回路电路图}
 	field{/scene/iamges/二次回路}
 	enable{false}
 	rect{-1,1,1,-1,1}
+	bitmap{二次回路\二次回路图片按钮\二次回路.jpg}
 }
 button{''关闭二次回路电路图
 	name{关闭二次回路电路图}
-	rect{}
+	rect{0.9,1,1,0.85,0}
 	enable{false}
 	transparency{0.8}
 	normal{
-		bitmap{}
-		bitmap_templ{}
+		bitmap{二次回路\二次回路图片按钮\关闭_不点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\关闭_蒙版.jpg}
 	}
 	hover{
-		bitmap{}
-		bitmap_templ{}
+		bitmap{二次回路\二次回路图片按钮\关闭_点亮.jpg}
+		bitmap_templ{二次回路\二次回路图片按钮\关闭_蒙版.jpg}
 	}
-	push{
-		bitmap{}
-		bitmap_templ{}
-	}
+
+	
+}
+button{''关闭二次回路电路图
+	name{关闭二次回路电路图}
 	reaction{
 	''关闭电路图，关闭自身的控制点
 		type{LBUTTONDOWN}
@@ -93,14 +109,89 @@ button{''关闭二次回路电路图
 			}
 			act{
 				type{disable ctrlpt}
-				''!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				ctrlpt{name{关闭二次回路电路图}}
+			}
+		}
+	}
+}
+button{''全屏显示电路图  图层为5
+	name{全屏显示电路图}
+	rect{0.481,-0.621,0.641,-0.710,5}
+	enable{false}
+	normal{
+		bitmap{二次回路\二次回路图片按钮\全屏显示按钮不亮.jpg}
+	}
+	hover{
+		bitmap{二次回路\二次回路图片按钮\全屏显示按钮点亮.jpg}
+	}
+	push{
+		bitmap{二次回路\二次回路图片按钮\全屏显示按钮点亮.jpg}
+	}
+	reaction{
+		type{LBUTTONDOWN}
+		''打开电路图，打开关闭的按钮
+		action{
+			act{
+				type{show field}
+				field{/scene/iamges/二次回路/二次回路电路图}
+			}
+			act{
+				type{enable ctrlpt}
+				ctrlpt{name{关闭二次回路电路图}}
+			}
+		}
+	}
+}
+
+animation{''接线学习贴士缩回连接基本动画
+	name{接线学习贴士缩回}
+	property{reverse}
+	reference{animation{name{接线学习贴士移出}}}
+}
+animation{''缩回接线学习贴士连接综合动画：用于显示
+	name{缩回接线学习贴士}
+	controller{
+		life{0,100}
+		action{
+			act{
+				type{disable ctrlpt}
+				ctrlpt{name{全屏显示电路图}}
+			}
+		}
+	}
+	controller{
+		life{100,900}
+		action{
+			program{
+				astart("接线学习贴士缩回")
 			}
 		}
 	}
 	
 }
+animation{''移出接线学习贴士连接综合动画：用于显示
+	name{移出接线学习贴士}
+	controller{
+		life{0,800}
+		action{
+			program{
+				astart("接线学习贴士移出")
+			}
+		}
+	}
+	controller{
+		life{800,900}
+		action{
+			act{
+				type{enable ctrlpt}
+				ctrlpt{name{全屏显示电路图}}
+			}
+		}
+	}
+}
 
-area{''贴士区域控制--开启
+int 移出状态=0;''定义初始移出状态
+area{''贴士区域控制连接开启
 	name{接线讲解区域控制}
 	rect{}
 	enable{false}
@@ -109,21 +200,31 @@ area{''贴士区域控制--开启
 	reaction{
 		type{LBUTTONDOWN}
 		action{
-			''显示贴士移出之后，出现放大的按钮，
-			''点击缩回之后，首先将放大的按钮隐藏，为保险起见，将电路图和关闭按钮同样影藏。
-			
+			''显示贴士移出之后，出现放大的按钮，			
 			program{
 				if(移出状态==0){
-					astart("yichu")!!!!!!!!!
+					astart("移出接线学习贴士")
 					移出状态==1
 				}
-				else if(移出状态==1)
+				else if(移出状态==1){
+					astart("缩回接线学习贴士")
+				}
+			}
+			''点击缩回之后，首先将放大的按钮隐藏，为保险起见，将电路图和关闭按钮同样影藏。
+			act{
+				type{hide field}
+				field{/scene/iamges/二次回路/二次回路电路图}
+			}
+			act{
+				type{disable ctrlpt}
+				ctrlpt{name{关闭二次回路电路图}}
 			}
 		}
 	}
 	
 	
 }
+
 
 ''''''''''''''''''''''''连线前介绍是哪个回来的
 introduction(message){
@@ -132,14 +233,22 @@ introduction(message){
 			life{0,2000}
 			action{
 				program{
-					printString(-0.8,-0.9, "message")
+					printString(-0.8,-0.9, message)
+				}
+			}
+		}
+		controller{
+			life{2000,2100}
+			action{
+				program{
+					flush("/scene/system/texts")
 				}
 			}
 		}
 	}
 }
 
-'''''''''''''''''''''''''连线前闪烁，以及''''''''''
+'''''''''''''''''''''''''连线前闪烁，以及显示是什么元件''''''''''
 hilightfield(field1,field2,name1,name2){''两个元件先后闪烁
 	animation{
 		controller{
@@ -317,15 +426,15 @@ animation{''电源开关-接触器
 	name{电源开关-接触器}
 	setstepnum(0)
 	
-	introduction(转换开关控制交流接触器：（1）X3端子排的P24V端口 -- 电源开关)
+	introduction("转换开关控制交流接触器：（1）X3端子排的P24V端口 连接 电源开关")
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/控制面板/电源开关,P24V,电源开关)
 	animation{name{P24-转换开关1_stretch}}
 	
-	introduction(转换开关控制交流接触器：（2）电源开关 -- 交流接触器控制端)
+	introduction("转换开关控制交流接触器：（2）电源开关 连接 交流接触器控制端")
 	hilightfield(/scene/model/控制面板/电源开关,/scene/model/交流接触器,电源开关,交流接触器)
 	animation{name{转换开关2-接触器_stretch}}
 	
-	introduction(转换开关控制交流接触器：（3）交流接触器控制端 -- X3端子排的N24V端口 )
+	introduction("转换开关控制交流接触器：（3）交流接触器控制端 连接 X3端子排的N24V端口" )
 	hilightfield(/scene/model/交流接触器,/scene/model/X3端子排/对象378,交流接触器,N24V)
 	animation{name{接触器-N24_stretch}}
 	
@@ -334,13 +443,13 @@ animation{''电源开关-接触器
 animation{''电源指示灯接线
 	name{电源指示灯接线}
 	setstepnum(0)
-	introduction(转换开关控制电源指示灯： （1）X3端子排的P24V端口 -- 电源开关)
+	introduction("转换开关控制电源指示灯： （1）X3端子排的P24V端口 连接 电源开关")
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/控制面板/电源开关,P24V,电源开关)
 	animation{name{P24-转换开关7_stretch}}
-	introduction(转换开关控制电源指示灯： （2）电源开关 -- 电源指示灯)
+	introduction("转换开关控制电源指示灯： （2）电源开关 连接 电源指示灯")
 	hilightfield(/scene/model/控制面板/电源开关,/scene/model/控制面板/电源指示灯,电源开关,电源指示灯)
 	animation{name{转换开关8-电源指示灯_stretch}}
-	introduction(转换开关控制电源指示灯： （3）电源指示灯 -- X3端子排的N24V端口)
+	introduction("转换开关控制电源指示灯： （3）电源指示灯 连接 X3端子排的N24V端口")
 	hilightfield(/scene/model/X3端子排/对象378,/scene/model/控制面板/电源指示灯,N24V,电源指示灯)
 	animation{name{电源指示灯-N24_stretch反}}
 	setstepnum(3)
@@ -348,10 +457,10 @@ animation{''电源指示灯接线
 animation{''IO盒供电接线
 	name{IO盒供电接线}
 	setstepnum(0)
-	introduction(IO盒供电回路：（1）X3端子排的P24V端口 -- IO模块)
+	introduction("IO盒供电回路：（1）X3端子排的P24V端口 连接 IO模块")
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/IO模块/hcnc_2-DC_Shell,P24V,IO模块)
 	animation{name{IOP-P24_stretch}}
-	introduction(IO盒供电回路：（2）X3端子排的N24V端口 -- IO模块)
+	introduction("IO盒供电回路：（2）X3端子排的N24V端口 连接 IO模块")
 	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IO模块/hcnc_2-DC_Shell,N24V,IO模块)
 	animation{name{ION-N24_stretch}}
 	setstepnum(4)	
@@ -359,10 +468,10 @@ animation{''IO盒供电接线
 animation{''IPC供电接线
 	name{IPC供电接线}
 	setstepnum(0)
-	introduction(IPC供电回路：（1）X3端子排的P24V端口 -- IPC单元)
+	introduction("IPC供电回路：（1）X3端子排的P24V端口 连接 IPC单元")
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/IPC单元,P24V,IPC单元)
 	animation{name{IPCP-P24_stretch}}
-	introduction(IPC供电回路：（2）X3端子排的N24V端口 -- IPC单元)
+	introduction("IPC供电回路：（2）X3端子排的N24V端口 连接 IPC单元")
 	hilightfield(/scene/model/X3端子排/对象378,/scene/model/IPC单元,N24V,IPC单元)
 	animation{name{IPCN-N24_stretch}}
 	setstepnum(5)
@@ -370,13 +479,13 @@ animation{''IPC供电接线
 animation{''示教器接线
 	name{示教器接线}
 	setstepnum(0)
-	introduction(示教器接线：（1）IPC单元网口 -- 示教器)
+	introduction("示教器接线：（1）IPC单元网口 连接 示教器")
 	hilightfield(/scene/model/IPC单元,/scene/model/示教器,IPC单元网线接口,示教器)
 	animation{name{IPC-示教器_stretch}}
-	introduction(示教器接线：（2）X3端子排的P24V端口 -- 示教器)
+	introduction("示教器接线：（2）X3端子排的P24V端口 连接 示教器")
 	hilightfield(/scene/model/X3端子排/对象374,/scene/model/示教器,P24V,示教器)
 	animation{name{P24-示教器_stretch}}
-	introduction(示教器接线：（2）X3端子排的N24V端口 -- 示教器)
+	introduction("示教器接线：（2）X3端子排的N24V端口 连接 示教器")
 	hilightfield(/scene/model/X3端子排/对象378,/scene/model/示教器,N24V,示教器)
 	animation{name{N24-示教器_stretch}}
 }
@@ -463,10 +572,9 @@ button{
 	name{退出接线学习}
 	reaction{		
 		action{
-			
-			act{''显示二次回路接线
-				type{show field}
-				field{/scene/model/电气拆装线缆/二次回路接线}
+		
+			program{''显示二次回路接线
+				astart("播放所有动画")
 			}
 			''!！！!!!打开上一级页面的内容
 			program{
