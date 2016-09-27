@@ -36,21 +36,21 @@ image{''IPC功能说明
 	field{/scene/images/元件介绍/IPC/功能说明}
 	name{IPC功能说明}
 	enable{false}
-	rect{-0.557,0.667,0.973,-0.706,0}
+	rect{-0.555,0.667,0.973,-0.706,0}
 	bitmap{元件介绍按钮图片\IPC\IPC功能说明.jpg}	
 }
 image{''IPC接口介绍
 	field{/scene/images/元件介绍/IPC/接口介绍}
 	name{IPC接口介绍}
 	enable{false}
-	rect{-0.557,0.667,0.973,-0.706,0}
+	rect{-0.555,0.667,0.973,-0.706,0}
 	bitmap{元件介绍按钮图片\IPC\IPC接口介绍.jpg}	
 }
 image{''IPC外部连接
 	field{/scene/images/元件介绍/IPC/外部连接}
 	name{IPC外部连接}
 	enable{false}
-	rect{-0.557,0.667,0.973,-0.706,0}
+	rect{-0.555,0.667,0.973,-0.706,0}
 	bitmap{元件介绍按钮图片\IPC\IPC外部连接.jpg}	
 }
 
@@ -133,8 +133,468 @@ animation{''进入IPC单元介绍：打开初始显示的图片，打开初始的区域控制
 	}
 }
 
-'''''''''''''''''''''''''''''''电源指示灯 '''''''''''''''''''''
+'''''''''''''''''''''''''''''''电源指示灯'''''''''''''''''''''
+image{''电源指示灯界面图 图层10
+	field{/scene/images/元件介绍/电源指示灯}
+	name{电源指示灯的作用界面图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{元件介绍按钮图片\电源指示灯\电源指示灯的作用界面图.jpg}
+}
+
+image{''电源指示灯的作用按钮
+	field{/scene/images/元件介绍/电源指示灯/电源指示灯的作用}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.379,-0.560,0.181,0}
+	bitmap{元件介绍按钮图片\电源指示灯\电源指示灯的作用按钮.jpg}	
+}
+
+image{''电源指示灯的作用
+	field{/scene/images/元件介绍/电源指示灯/电源指示灯的作用}
+	name{电源指示灯的作用}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\电源指示灯\电源指示灯的作用.jpg}	
+}
+
+animation{''进入电源指示灯的作用单元介绍：打开初始显示的图片，打开初始的区域控制
+	name{进入电源指示灯的作用单元介绍}
+	controller{
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/电源指示灯/电源指示灯的作用}
+				field{/scene/images/元件介绍/电源指示灯/电源指示灯的作用界面图}
+			}
+
+		}
+	}
+}
+
 
 '''''''''''''''''''''''''''''''示教器'''''''''''''''''''''''''
+image{''示教器界面图 图层10
+	field{/scene/images/元件介绍/示教器}
+	name{示教器界面图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{元件介绍按钮图片\示教器\示教器界面图.jpg}
+}
+image{''示教器使用按钮
+	field{/scene/images/元件介绍/示教器/示教器使用}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.360,-0.560,0.175,0}
+	bitmap{元件介绍按钮图片\示教器\示教器使用按钮.jpg}
+}
+image{''按键说明按钮
+	field{/scene/images/元件介绍/示教器/按键说明}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.164,-0.560,-0.021,0}
+	bitmap{元件介绍按钮图片\示教器\按键说明按钮.jpg}
+}
+image{''使用方法按钮
+	field{/scene/images/元件介绍/示教器/使用方法}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.032,-0.560,-0.217,0}
+	bitmap{元件介绍按钮图片\示教器\使用方法按钮.jpg}
+}
+image{''故障处理按钮
+	field{/scene/images/元件介绍/示教器/故障处理}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.228,-0.560,-0.413,0}
+	bitmap{元件介绍按钮图片\示教器\故障处理按钮.jpg}
+}
+image{''示教器使用
+	field{/scene/images/元件介绍/示教器/示教器使用}
+	name{示教器使用}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\示教器\示教器使用.jpg}
+}
+image{''示教器按键说明
+	field{/scene/images/元件介绍/示教器/按键说明}
+	name{示教器按键说明}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\示教器\按键说明.jpg}
+}
+image{''示教器使用方法
+	field{/scene/images/元件介绍/示教器/使用方法}
+	name{示教器使用方法}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\示教器\使用方法.jpg}
+}
+image{''示教器故障处理
+	field{/scene/images/元件介绍/示教器/故障处理}
+	name{示教器故障处理}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\示教器\故障处理.jpg}
+}
+area{''切换至示教器使用
+	name{切换至示教器使用}
+	rect{-0.978,0.360,-0.560,0.175}
+	enable{false}
+	group{1103}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/示教器/示教器使用}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/示教器/按键说明}
+				field{/scene/images/元件介绍/示教器/使用方法}
+				field{/scene/images/元件介绍/示教器/故障处理}
+			}
+		}
+	}
+}
+area{''切换至按键说明
+	name{切换至按键说明}
+	rect{-0.978,0.164,-0.560,-0.021}
+	enable{false}
+	group{1103}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/示教器/按键说明}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/示教器/示教器使用}
+				field{/scene/images/元件介绍/示教器/使用方法}
+				field{/scene/images/元件介绍/示教器/故障处理}
+			}
+		}
+	}
+}
+area{''切换至使用方法
+	name{切换至使用方法}
+	rect{-0.978,-0.032,-0.560,-0.217}
+	enable{false}
+	group{1103}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/示教器/使用方法}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/示教器/按键说明}
+				field{/scene/images/元件介绍/示教器/示教器使用}
+				field{/scene/images/元件介绍/示教器/故障处理}
+			}
+		}
+	}
+}
+area{''切换至故障处理
+	name{切换至故障处理}
+	rect{-0.978,-0.228,-0.560,-413}
+	enable{false}
+	group{1103}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/示教器/故障处理}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/示教器/按键说明}
+				field{/scene/images/元件介绍/示教器/使用方法}
+				field{/scene/images/元件介绍/示教器/示教器使用}
+			}
+		}
+	}
+}
+animation{''进入示教器介绍：打开初始显示的图片，打开初始的区域控制
+	name{进入示教器介绍}
+	controller{
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/示教器/示教器使用}
+				field{/scene/images/元件介绍/示教器/示教器界面图}
+			}
+			act{
+				type{enable ctrlpt group}
+				int{1103}				
+			}			
+			}
+
+		}
+}
+
+''''''''''''''''''''''''''''''''''IO模块''''''''''''''''''''''
+image{''IO模块界面图 图层10
+	field{/scene/images/元件介绍/IO模块}
+	name{IO模块界面图}
+	enable{false}
+	rect{-1,1,1,-1,10}
+	bitmap{元件介绍按钮图片\IO模块\IO模块界面图.jpg}
+}
+image{''IO模块介绍按钮
+	field{/scene/images/元件介绍/IO模块/IO模块介绍}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.360,-0.560,0.175,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块介绍按钮.jpg}
+}
+image{''IO模块组成按钮
+	field{/scene/images/元件介绍/IO模块/IO模块组成}
+	name{按钮}
+	enable{false}
+	rect{-0.978,0.164,-0.560,-0.021,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块组成按钮.jpg}
+}
+image{''IO模块配置按钮
+	field{/scene/images/元件介绍/IO模块/IO模块配置}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.032,-0.560,-0.217,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块配置按钮.jpg}
+}
+image{''通讯子模块按钮
+	field{/scene/images/元件介绍/IO模块/通讯子模块}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.228,-0.560,-0.413,0}
+	bitmap{元件介绍按钮图片\IO模块\通讯子模块按钮.jpg}
+}
+image{''开关量子模块按钮
+	field{/scene/images/元件介绍/IO模块/开关量子模块}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.424,-0.560,-0.609,0}
+	bitmap{元件介绍按钮图片\IO模块\开关量子模块按钮.jpg}
+}
+image{''模拟量子模块按钮
+	field{/scene/images/元件介绍/IO模块/模拟量子模块}
+	name{按钮}
+	enable{false}
+	rect{-0.978,-0.620,-0.560,-0.805,0}
+	bitmap{元件介绍按钮图片\IO模块\模拟量子模块按钮.jpg}
+}
+''ppt''
+image{''IO模块介绍
+	field{/scene/images/元件介绍/IO模块/IO模块介绍}
+	name{IO模块介绍}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块介绍.jpg}
+}
+image{''IO模块组成
+	field{/scene/images/元件介绍/IO模块/IO模块组成}
+	name{IO模块组成}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块组成.jpg}
+}
+image{''IO模块配置
+	field{/scene/images/元件介绍/IO模块/IO模块配置}
+	name{IO模块配置}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\IO模块配置.jpg}
+}
+image{''通讯子模块
+	field{/scene/images/元件介绍/IO模块/通讯子模块}
+	name{通讯子模块}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\通讯子模块.jpg}
+}
+image{''开关量子模块1
+	field{/scene/images/元件介绍/IO模块/开关量子模块}
+	name{开关量子模块}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\开关量子模块1.jpg}
+}
+image{''开关量子模块2
+	field{/scene/images/元件介绍/IO模块/开关量子模块2}
+	name{开关量子模块2}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\开关量子模块2.jpg}
+}
+image{''模拟量子模块
+	field{/scene/images/元件介绍/IO模块/模拟量子模块}
+	name{模拟量子模块}
+	enable{false}
+	rect{-0.555,0.667,0.973,-0.706,0}
+	bitmap{元件介绍按钮图片\IO模块\模拟量子模块.jpg}
+}
+''六个区域控制''
+area{''切换至IO模块介绍
+	name{切换至IO模块介绍}
+	rect{-0.978,0.360,-0.560,0.175}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+		}
+	}
+}
+area{''切换至IO模块组成
+	name{切换至IO模块组成}
+	rect{-0.978,0.164,-0.560,0.021}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+		}
+	}
+}
+area{''切换至IO模块配置
+	name{切换至IO模块配置}
+	rect{-0.978,-0.032,-0.560,-0.217}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+		}
+	}
+}
+area{''切换至通讯子模块
+	name{切换至通讯子模块}
+	rect{-0.978,-0.228,-0.560,-0.413}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+		}
+	}
+}
+area{''切换至开关量子模块
+	name{切换至开关量子模块}
+	rect{-0.978,-0.424,-0.560,-0.609}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+		}
+	}
+}
+area{''切换至模拟量子模块
+	name{切换至模拟量子模块}
+	rect{-0.978,-0.620,-0.560,-0.805}
+	enable{false}
+	group{1105}
+	reaction{
+		type{LBUTTONDOWN}
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/模拟量子模块}
+			}
+			act{
+				type{hide field}
+				field{/scene/images/元件介绍/IO模块/IO模块组成}
+				field{/scene/images/元件介绍/IO模块/IO模块配置}
+				field{/scene/images/元件介绍/IO模块/通讯子模块}
+				field{/scene/images/元件介绍/IO模块/开关量子模块}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+			}
+		}
+	}
+}
+''进入IO模块讲解动画''
+animation{''进入IO模块介绍：打开初始显示的图片，打开初始的区域控制
+	name{进入IO模块介绍}
+	controller{
+		action{
+			act{
+				type{show field}
+				field{/scene/images/元件介绍/IO模块/IO模块介绍}
+				field{/scene/images/元件介绍/IO模块/IO模块界面图}
+			}
+			act{
+				type{enable ctrlpt group}
+				int{1105}				
+			}			
+			}
+
+		}
+}
 
 }
